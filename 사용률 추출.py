@@ -91,23 +91,18 @@ try:
             By.XPATH, "/html/body/div[2]/div/div/select[1]")
         month_dropdown.click()
 
-        # 두 번째 셀렉트 박스에서 '2023' 선택
-        year_option = driver.find_element(
-            By.XPATH, "//select[1]/option[text()='2023']")
-        year_option.click()
-
-        # 12월 선택
+        # 1월 선택
         month_option = driver.find_element(
             By.XPATH, "/html/body/div[2]/div/div/select[2]")
         month_option.click()
 
         month_option2 = driver.find_element(
-            By.XPATH, "//option[text()='12월']")
+            By.XPATH, "//option[text()='1월']")
         month_option2.click()
 
         # 특정 날짜 선택하기(1일)
         target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[6]/a")
+            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[2]/a")
         target_date.click()
         time.sleep(2)
 
@@ -117,28 +112,18 @@ try:
         calendar_icon.click()
         time.sleep(2)
 
-        # 두번째 달력 년도 체크박스 선택
-        month_dropdown3 = driver.find_element(
-            By.XPATH,  "/html/body/div[2]/div/div/select[1]")
-        month_dropdown3.click()
-
-        # 두번째 달력 년도 선택
-        month_option4 = driver.find_element(
-            By.XPATH, "//option[text()='2023']")
-        month_option4.click()
-
         # 달력 월 선택
         month_dropdown = driver.find_element(
             By.XPATH, "/html/body/div[2]/div/div/select[2]")
         month_dropdown.click()
         time.sleep(2)
-        # 12월 선택
-        month_option5 = driver.find_element(By.XPATH, "//option[text()='12월']")
+        # 1월 선택
+        month_option5 = driver.find_element(By.XPATH, "//option[text()='1월']")
         month_option5.click()
         time.sleep(2)
         # 특정 날짜 선택하기(31일)
         target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[6]/td[1]/a")
+            By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[4]/a")
         target_date.click()
         time.sleep(5)
         # 상세 검색 조회 버튼 클릭
