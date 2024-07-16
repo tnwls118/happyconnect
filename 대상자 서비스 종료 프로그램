@@ -1,0 +1,159 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+# Chrome 드라이버 경로 설정
+def chrome_driver_path():
+    print("chrome driver 경로 설정")
+    return r"C:\Users\USER\Desktop\pthyon workspace\관제시스템 대상자 종료처리\chromedriver.exe"
+
+# 변수 설정
+hc_id = "hc_csj"
+hc_pw = "2024tid^^"
+homepage_Path = "https://happycommunity.happyconnect.co.kr/"
+
+# 행복커뮤니티 홈페이지 조회
+start_time = time.time()
+print("프로그램 시작")
+
+try:
+    hc_homepage = webdriver.Chrome(chrome_driver_path())
+    hc_homepage.get(homepage_Path)
+    hc_homepage.maximize_window()
+    time.sleep(3)
+    print("홈페이지 열람")
+
+    # 로그인 정보 입력
+    ID = WebDriverWait(hc_homepage, 10).until(
+        EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[1]/dd/input"))
+    )
+    ID.send_keys(hc_id)
+
+    PW = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[2]/dd/input")
+    PW.send_keys(hc_pw)
+
+    login_button = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/button")
+    login_button.click()
+    time.sleep(3)
+    print("로그인 완료")
+
+    # 대상자 관리 페이지 조회 및 지역 설정
+    peple_menu = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[1]/div/ul/li[1]/h2/a")
+    peple_menu.click()
+    peple_menu1 = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[1]/div/ul/li[1]/ul/li[1]/h3/a")
+    peple_menu1.click()
+    time.sleep(3)
+
+    # 지역 대구분 드롭다운 클릭
+    dropdown1 = WebDriverWait(hc_homepage, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[1]/li/select[1]"))
+    )
+    dropdown1.click()
+    time.sleep(2)
+
+    # 옵션 선택
+    option = WebDriverWait(hc_homepage, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//option[contains(text(), '지자체')]"))
+    )
+    option.click()
+    time.sleep(2)
+
+    # 지역 중구분 드롭다운 클릭
+    dropdown2 = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[1]/li/select[2]")
+    dropdown2.click()
+    time.sleep(2)
+
+    # 옵션 선택
+    option = hc_homepage.find_element(By.XPATH, "//option[contains(text(), '부산광역시')]")
+    option.click()
+    time.sleep(2)
+
+    # 지역 소구분 드롭다운 클릭
+    dropdown3 = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[1]/li/select[3]")
+    dropdown3.click()
+    time.sleep(2)
+
+    # 옵션 선택
+    option = hc_homepage.find_element(By.XPATH, "//option[contains(text(), '북구')]")
+    option.click()
+    time.sleep(2)
+
+    # 기간 전체 설정 및 조회
+    days = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[3]/li[2]/div[4]")
+    days.click()
+    search_button = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[2]/button[1]")
+    search_button.click()
+    time.sleep(3)
+
+    # 대상자 종료 반복 작업 시작
+    # 페이지당 10개 리스트 종료 작업 반복
+    while True:
+        try:
+            # 현재 페이지의 리스트 항목 개수를 확인
+            list_items = hc_homepage.find_elements(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/form/div/table/tbody/tr")
+            total_iterations = len(list_items)
+
+            for n in range(1, total_iterations + 1):
+                print(f"전체 {total_iterations}개 중 현재 {n}번째 반복문 수행 중")
+
+                try:
+                    # 반복 작업 수행
+                    bogy_button = hc_homepage.find_element(By.XPATH, f"/html/body/div[1]/div[2]/div/div[3]/form/div/table/tbody/tr[{n}]/td[14]/button")
+                    bogy_button.click()
+                    time.sleep(2)
+                    state_button = WebDriverWait(hc_homepage, 10).until(
+                        EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[4]/div[2]/form/div/div/table/tbody/tr[10]/td/select"))
+                    )
+                    state_button.click()
+                    option = WebDriverWait(hc_homepage, 10).until(
+                        EC.element_to_be_clickable((By.XPATH, "//option[contains(text(), '종료')]"))
+                    )
+                    option.click()
+                    set_button = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[4]/div[2]/form/div/div/div/button[1]")
+                    set_button.click()
+
+                    # 확인 Alert 처리
+                    WebDriverWait(hc_homepage, 10).until(EC.alert_is_present())
+                    alert = hc_homepage.switch_to.alert
+                    alert.accept()
+                    print("확인 alert 처리 완료")
+
+                except Exception as e:
+                    print(f"오류 발생: {e}")
+                    continue 
+
+            try:
+                total_page
+                for r in range(1,11):
+                # 다음 페이지로 이동
+                next_button = hc_homepage.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/form/div/div/a[3]")
+                next_button.click()
+                time.sleep(3)
+                print("다음페이지 이동")
+                time.sleep(3)
+            except Exception as e:
+                print("더 이상 다음 페이지가 없습니다.")
+                break
+        except Exception as e:
+            print(f"페이지 항목 확인 중 오류 발생: {e}")
+            break
+
+except Exception as e:
+    print(f"에러 발생: {e}")
+
+finally:
+    hc_homepage.quit()
+    end_time = time.time()
+    run_time = end_time - start_time
+    print("프로그램 종료")
+    print(f"프로그램 실행 시간: {run_time}")]]]]
+
+
+/html/body/div[1]/div[2]/div/div[3]/form/div/div/span/a[2]
+/html/body/div[1]/div[2]/div/div[3]/form/div/div/span/a[10]
+/html/body/div[1]/div[2]/div/div[3]/form/div/div/span/a
+/html/body/div[1]/div[2]/div/div[3]/form/div/div/span/a[2]
+/html/body/div[1]/div[2]/div/div[3]/form/div/div/span/a[10]
+/html/body/div[1]/div[2]/div/div[3]/form/div/div/span/a[1]
