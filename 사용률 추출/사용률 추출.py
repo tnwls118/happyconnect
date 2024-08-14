@@ -8,7 +8,7 @@ import os
 start_time = time.time()
 
 # chrome 브라우저 인스턴스 생성
-driver_path = r"C:\Users\82109\.vscode\work space\chromedriver.exe"
+driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
 service = Service(driver_path)
 driver = webdriver.Chrome(service=service)
 
@@ -117,12 +117,12 @@ try:
             By.XPATH, "/html/body/div[2]/div/div/select[2]")
         month_option.click()
 
-        month_option2 = driver.find_element(By.XPATH, "//option[text()='6월']")
+        month_option2 = driver.find_element(By.XPATH, "//option[text()='7월']")
         month_option2.click()
 
         # 특정 날짜 선택하기(1일)
         target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[7]/a")
+            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[2]/a")
         target_date.click()
         time.sleep(2)
 
@@ -137,13 +137,13 @@ try:
             By.XPATH, "/html/body/div[2]/div/div/select[2]")
         month_dropdown.click()
         time.sleep(2)
-        # 6월 선택
-        month_option5 = driver.find_element(By.XPATH, "//option[text()='6월']")
+        # 7월 선택
+        month_option5 = driver.find_element(By.XPATH, "//option[text()='7월']")
         month_option5.click()
         time.sleep(2)
-        # 특정 날짜 선택하기(30일)
+        # 특정 날짜 선택하기(31일)
         target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[6]/td[1]/a")
+            By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[4]/a")
         target_date.click()
         time.sleep(5)
         # 상세 검색 조회 버튼 클릭

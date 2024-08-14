@@ -13,7 +13,7 @@ start_time = time.time()
 hc_id = "hc_csj"
 hc_pw = "2024tid^^"
 homepage_Path = "https://happycommunity.happyconnect.co.kr/"
-driver_path = r"C:\Users\82109\.vscode\work space\chromedriver.exe"
+driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
 
 # chrome driver 경로 설정
 service = Service(driver_path)
@@ -58,7 +58,7 @@ run_state.click()
 print("대상자 관리 페이지 조회 및 필터 설정 완료")
 
 # 엑셀 파일 경로 설정 및 엑셀 파일 읽기
-excel_file_path = r"C:\Users\82109\Desktop\경남 무상지원 기기 회수 리스트_0630 계약 만료 건.xlsx"
+excel_file_path = r"C:\Users\82109\Desktop\7월 계약 만료.xlsx"
 df = pd.read_excel(excel_file_path)
 print(f"데이터 프레임 출력{df}")
 time.sleep(3)
@@ -99,11 +99,27 @@ try:
         bogy_button.click()
         time.sleep(3)
 
+        # 포켓와이파이 패스워드 항목
+
+        pk_box = hc_homepage.find_element(
+            By.XPATH, "/html/body/div[1]/div[4]/div[2]/form/div/div/table/tbody/tr[17]/td[2]/span/input")
+        if pk_box == "":
+            print(f"{row[2]}의 포켓와이파이 패스워드가 지워져있습니다.")
+            time.sleep(2)
+            pass
+
+        else:
+            pk_box.get_attribute("value")
+            pk_box.clear()
+            print(f"{row[2]} 포켓와이파이 패스워드 삭제 처리")
+            time.sleep(2)
+
         # 상태 변경 버튼 클릭
-        state_button = WebDriverWait(hc_homepage, 10).until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "/html/body/div[1]/div[4]/div[2]/form/div/div/table/tbody/tr[10]/td/select"))
-        )
+
+            state_button = WebDriverWait(hc_homepage, 10).until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, "/html/body/div[1]/div[4]/div[2]/form/div/div/table/tbody/tr[10]/td/select"))
+            )
         state_button.click()
 
         option = WebDriverWait(hc_homepage, 10).until(
