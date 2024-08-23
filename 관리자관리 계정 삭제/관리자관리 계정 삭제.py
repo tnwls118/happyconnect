@@ -70,6 +70,12 @@ except Exception as e:
     hc_homepage.quit()
     exit()
 
+state_drop = hc_homepage.find_element(
+    By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[3]/li/select")
+state_drop.click()
+state_drop_option = hc_homepage.find_element(
+    By.XPATH, "//option[text()='관리자ID']")
+state_drop_option.click()
 # 데이터 반복 순회
 try:
     print("엑셀 파일 로드 중...")
@@ -81,7 +87,7 @@ try:
 
     # 데이터프레임 반복 순회
     for index, row in df.iterrows():
-        column1_data = row.iloc[0]  # FutureWarning 해결
+        column1_data = row[0]
         print(f"데이터 입력 중: {column1_data}")
 
         input_field1 = WebDriverWait(hc_homepage, 10).until(
@@ -90,23 +96,35 @@ try:
         )
         input_field1.clear()
         input_field1.send_keys(column1_data)
-
+        time.sleep(2)
         search_button = hc_homepage.find_element(
             By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[2]/button[1]")
         search_button.click()
         print("검색 버튼 클릭 완료")
 
+        time.sleep(2)
+        # 전체 선택 버튼이 있는지 확인
+
+        all_select = WebDriverWait(hc_homepage, 5).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/form/div/table/thead/tr/th[1]"))
+        )
+        all_select.click()
+        print("전체 선택 버튼 클릭 완료")
+        time.sleep(2)
+
         del_button = hc_homepage.find_element(
             By.XPATH, "/html/body/div[1]/div[2]/div/div[4]/button[1]")
         del_button.click()
         print("삭제 버튼 클릭 완료")
+        time.sleep(2)
 
         # 첫 번째 확인 Alert 처리
         WebDriverWait(hc_homepage, 10).until(EC.alert_is_present())
         alert = hc_homepage.switch_to.alert
         alert.accept()
         print("첫 번째 alert 처리 완료")
-
+        time.sleep(2)
         # 두 번째 확인 Alert 처리
         WebDriverWait(hc_homepage, 10).until(EC.alert_is_present())
         alert2 = hc_homepage.switch_to.alert
