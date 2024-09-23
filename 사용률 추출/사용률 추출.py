@@ -23,7 +23,7 @@ print("웹 페이지 사이즈 확대 완료")
 # 아이디 입력 필드 찾기
 input_field = driver.find_element(
     By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[1]/dd/input")
-input_field.send_keys("hc_csj")
+input_field.send_keys("hc_csj1")
 time.sleep(2)
 print("아이디 입력 완료")
 
@@ -112,17 +112,17 @@ try:
             By.XPATH, "/html/body/div[2]/div/div/select[1]")
         month_dropdown.click()
 
-        # 6월 선택
+        # 8월 선택
         month_option = driver.find_element(
             By.XPATH, "/html/body/div[2]/div/div/select[2]")
         month_option.click()
 
-        month_option2 = driver.find_element(By.XPATH, "//option[text()='7월']")
+        month_option2 = driver.find_element(By.XPATH, "//option[text()='8월']")
         month_option2.click()
 
         # 특정 날짜 선택하기(1일)
         target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[2]/a")
+            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[5]/a")
         target_date.click()
         time.sleep(2)
 
@@ -138,12 +138,12 @@ try:
         month_dropdown.click()
         time.sleep(2)
         # 7월 선택
-        month_option5 = driver.find_element(By.XPATH, "//option[text()='7월']")
+        month_option5 = driver.find_element(By.XPATH, "//option[text()='8월']")
         month_option5.click()
         time.sleep(2)
         # 특정 날짜 선택하기(31일)
         target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[4]/a")
+            By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[7]/a")
         target_date.click()
         time.sleep(5)
         # 상세 검색 조회 버튼 클릭

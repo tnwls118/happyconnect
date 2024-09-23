@@ -10,7 +10,7 @@ print("프로그램 시작")
 start_time = time.time()
 
 # 변수 설정
-hc_id = "hc_csj"
+hc_id = "hc_csj1"
 hc_pw = "2024tid^^"
 homepage_Path = "https://happycommunity.happyconnect.co.kr/"
 driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
@@ -58,7 +58,7 @@ run_state.click()
 print("대상자 관리 페이지 조회 및 필터 설정 완료")
 
 # 엑셀 파일 경로 설정 및 엑셀 파일 읽기
-excel_file_path = r"C:\Users\82109\Desktop\7월 계약 만료.xlsx"
+excel_file_path = r"C:\Users\82109\Desktop\통합 문서1.xlsx"
 df = pd.read_excel(excel_file_path)
 print(f"데이터 프레임 출력{df}")
 time.sleep(3)

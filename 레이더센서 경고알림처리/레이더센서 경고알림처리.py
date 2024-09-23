@@ -10,7 +10,7 @@ print("프로그램 시작")
 start_time = time.time()
 
 # 변수 설정
-hc_id = "hc_csj"
+hc_id = "hc_csj1"
 hc_pw = "2024tid^^"
 homepage_Path = "https://happycommunity.happyconnect.co.kr/"
 driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
@@ -89,7 +89,7 @@ except Exception as e:
 
 # 엑셀 파일 경로 설정 및 엑셀 파일 읽기
 try:
-    excel_file_path = r"C:\Users\82109\Desktop\6~7월 계약 만료.xlsx"
+    excel_file_path = r"C:\Users\82109\Desktop\통합 문서1.xlsx"
     df = pd.read_excel(excel_file_path)
     print(f"데이터 프레임 읽기 완료\n{df}")
 except Exception as e:
