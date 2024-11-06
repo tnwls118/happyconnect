@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 
@@ -21,68 +23,78 @@ time.sleep(2)
 print("웹 페이지 사이즈 확대 완료")
 
 # 아이디 입력 필드 찾기
-input_field = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[1]/dd/input")
+input_field = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located(
+        (By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[1]/dd/input"))
+)
 input_field.send_keys("hc_csj1")
-time.sleep(2)
 print("아이디 입력 완료")
 
 # 패스워드 입력 필드 찾기
-input_field = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[2]/dd/input")
-input_field.send_keys("2024tid^^")
-time.sleep(2)
+input_field = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located(
+        (By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/dl[2]/dd/input"))
+)
+input_field.send_keys("dudn1591!")
 print("패스워드 입력 완료")
 
 # 로그인 버튼 클릭
-login_button = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/button")
+login_button = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div/div[2]/form/div[1]/button"))
+)
 login_button.click()
-time.sleep(6)
 print("로그인 버튼 클릭 완료")
 
 # 메뉴 통계정보 버튼 클릭
-login_button = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[1]/div/ul/li[7]/h2/a")
+login_button = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[1]/div/ul/li[7]/h2/a"))
+)
 login_button.click()
-time.sleep(2)
 print("메뉴 통계정보 버튼 클릭 완료")
 
 # 메뉴 통계정보 ⇒ AI스피커 버튼 클릭
-login_button = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[1]/div/ul/li[7]/ul/li[1]/ul/li[2]/a")
+login_button = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[1]/div/ul/li[7]/ul/li[1]/ul/li[2]/a"))
+)
 login_button.click()
-time.sleep(2)
 print("메뉴 통계정보 ⇒ AI스피커 버튼 클릭 완료")
 
 # 지역 대구분 드롭다운 클릭
-dropdown = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[1]/li/select[1]")
+dropdown = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[1]/li/select[1]"))
+)
 dropdown.click()
-time.sleep(2)
 print("지역 대구분 드롭다운 클릭 완료")
 
 # 옵션 선택
-option = driver.find_element(By.XPATH, "//option[contains(text(), '지자체')]")
+option = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable((By.XPATH, "//option[contains(text(), '지자체')]"))
+)
 option.click()
-time.sleep(2)
 print("지자체 옵션 선택 완료")
 
 # 지역 중구분 드롭다운 클릭
-dropdown = driver.find_element(
-    By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[1]/li/select[2]")
+dropdown = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[1]/li/select[2]"))
+)
 dropdown.click()
-time.sleep(2)
 print("지역 중구분 드롭다운 클릭 완료")
 
-# 옵션선택
-option = driver.find_element(By.XPATH, "//option[contains(text(), '경상남도')]")
+# 옵션 선택
+option = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable(
+        (By.XPATH, "//option[contains(text(), '경상남도')]"))
+)
 option.click()
-time.sleep(2)
 print("경상남도 옵션 선택 완료")
 
 # 반복할 지역 목록
-regions = ['창원시', '거창군', '고성군', '김해시', '남해군', '밀양시', '사천시', '산청군',
+regions = ['사천시', '산청군',
            '양산시', '의령군', '진주시', '창녕군', '거제시', '통영시', '하동군', '함안군', '함양군', '합천군']
 
 try:
@@ -90,89 +102,124 @@ try:
         print(f"진행 중: {index}/{len(regions)} - {region}")
 
         # 지역 소구분 드롭다운 클릭
-        dropdown = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[1]/li/select[3]")
+        dropdown = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[1]/li/select[3]"))
+        )
         dropdown.click()
-        time.sleep(2)
 
-        # 옵션선택
-        option = driver.find_element(
-            By.XPATH, f"//option[contains(text(), '{region}')]")
+        # 옵션 선택
+        option = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, f"//option[contains(text(), '{region}')]"))
+        )
         option.click()
-        time.sleep(2)
+        print(f"{region} 지역 선택 완료")
 
         # 달력 이미지 클릭하기
-        calendar_icon = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[2]/li[2]/input[1]")
+        calendar_icon = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[2]/li[2]/input[1]"))
+        )
         calendar_icon.click()
-        time.sleep(2)
 
         # 첫 번째 셀렉트 박스 클릭
-        month_dropdown = driver.find_element(
-            By.XPATH, "/html/body/div[2]/div/div/select[1]")
+        month_dropdown = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div/div/select[1]"))
+        )
         month_dropdown.click()
 
-        # 8월 선택
-        month_option = driver.find_element(
-            By.XPATH, "/html/body/div[2]/div/div/select[2]")
+        # 9월 선택
+        month_option = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div/div/select[2]"))
+        )
         month_option.click()
 
-        month_option2 = driver.find_element(By.XPATH, "//option[text()='8월']")
+        month_option2 = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//option[text()='10월']"))
+        )
         month_option2.click()
 
         # 특정 날짜 선택하기(1일)
-        target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[5]/a")
+        target_date = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[3]/a"))
+        )
         target_date.click()
-        time.sleep(2)
+        print("시작 날짜 선택 완료")
 
-        # 두번째 달력 이미지 클릭하기
-        calendar_icon = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[2]/li[2]/input[2]")
+        # 두 번째 달력 이미지 클릭하기
+        calendar_icon = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[1]/ul[2]/li[2]/input[2]"))
+        )
         calendar_icon.click()
-        time.sleep(2)
 
         # 달력 월 선택
-        month_dropdown = driver.find_element(
-            By.XPATH, "/html/body/div[2]/div/div/select[2]")
+        month_dropdown = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div/div/select[2]"))
+        )
         month_dropdown.click()
-        time.sleep(2)
-        # 7월 선택
-        month_option5 = driver.find_element(By.XPATH, "//option[text()='8월']")
+
+        # 10월 선택
+        month_option5 = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//option[text()='10월']"))
+        )
         month_option5.click()
-        time.sleep(2)
+
         # 특정 날짜 선택하기(31일)
-        target_date = driver.find_element(
-            By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[7]/a")
+        target_date = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[5]/a"))
+        )
         target_date.click()
-        time.sleep(5)
+        print("종료 날짜 선택 완료")
+
+        time.sleep(3)
+
         # 상세 검색 조회 버튼 클릭
-        login_button = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[2]/button[1]")
-        login_button.click()
-        time.sleep(100)
+        search_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[2]/button[1]"))
+        )
+        search_button.click()
+
+        time.sleep(60)
 
         # 엑셀 다운로드 버튼 클릭
-        login_button = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[2]/div/button")
-        login_button.click()
-        time.sleep(2)
+        download_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[2]/div/button"))
+
+        )
+        download_button.click()
+        print("엑셀 다운로드 버튼 클릭 완료")
+
+        time.sleep(3)
 
         # 엑셀 다운로드 사유 보고서작성용 버튼 클릭
-        login_button = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[28]/form/div/div[2]/div/table/tbody/tr[2]/td/label")
-        login_button.click()
+        reason_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[33]/form/div/div[2]/div/table/tbody/tr[2]/td/input"))
+        )
+        reason_button.click()
+
         time.sleep(2)
 
         # 엑셀다운로드 사유 확인 버튼 클릭
-        login_button = driver.find_element(
-            By.XPATH, "/html/body/div[1]/div[2]/div[28]/form/div/div[2]/div/div/button[1]")
-        login_button.click()
-        time.sleep(200)
+        confirm_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[1]/div[2]/div[33]/form/div/div[2]/div/div/button[1]"))
+        )
+        confirm_button.click()
+
+        time.sleep(100)
 
         # 다운로드된 파일을 바탕화면으로 이동
         download_folder = "C:\\Users\\82109\\Desktop"
-        desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         print(f"{region} 지역의 엑셀파일 다운로드 및 이동 완료")
 except Exception as e:
     print(f"에러메시지: {e}")
