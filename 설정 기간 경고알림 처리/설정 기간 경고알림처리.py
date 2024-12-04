@@ -78,82 +78,49 @@ try:
     print("방문 메뉴2 클릭 완료")
     time.sleep(3)
 
+    # 지역 대구분 드롭다운 클릭
+    dropdown = WebDriverWait(hc_homepage, 10).until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[1]/li/select[1]"))
+    )
+    dropdown.click()
+    print("지역 대구분 드롭다운 클릭 완료")
+
+    # 옵션 선택
+    option = WebDriverWait(hc_homepage, 10).until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "//option[contains(text(), '효돌')]"))
+    )
+    option.click()
+    print("효돌 옵션 선택 완료")
+
+    # 지역 대구분 드롭다운 클릭
+    dropdown_2 = WebDriverWait(hc_homepage, 10).until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[1]/li/select[2]"))
+    )
+    dropdown.click()
+    print("지역 중구분 드롭다운 클릭 완료")
+
+    # 옵션 선택
+    option1 = WebDriverWait(hc_homepage, 10).until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "//option[contains(text(), '전체')]"))
+    )
+    option.click()
+    print("중구분 전체 옵션 선택 완료")
+
     state = hc_homepage.find_element(
         By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[2]/li[3]/input[3]")
     state.click()
     print("상태 선택 완료")
     time.sleep(3)
 
-    calendar_icon1 = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[3]/li[3]/input[1]")
-    calendar_icon1.click()
-    print("첫번째 달력아이콘 클릭 완료")
+    days = hc_homepage.find_element(
+        By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[3]/li[2]/div[4]")
+    days.click()
     time.sleep(2)
 
-    year_dropdown1 = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[2]/div/div/select[1]")
-    year_dropdown1.click()
-    print("연도 드롭다운 클릭 완료")
-
-    year_option1 = hc_homepage.find_element(
-        By.XPATH, "//option[text()='2022']")
-    year_option1.click()
-    print("2022년 선택 완료")
-
-    time.sleep(2)
-    month_dropdown1 = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[2]/div/div/select[2]")
-    month_dropdown1.click()
-    print("월 드롭다운 클릭 완료")
-
-    time.sleep(2)
-    month_option1 = hc_homepage.find_element(
-        By.XPATH, "//option[text()='1월']")
-    month_option1.click()
-    print("1월 선택 완료")
-
-    time.sleep(2)
-    target_date1 = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[7]/a")
-    target_date1.click()
-    print("1일 선택 완료")
-
-    time.sleep(2)
-
-    calendar_icon = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[1]/div[2]/div/form/div/div[1]/ul[3]/li[3]/input[2]")
-    calendar_icon.click()
-    print("달력 아이콘 클릭 완료")
-
-    time.sleep(2)
-    year_dropdown = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[2]/div/div/select[1]")
-    year_dropdown.click()
-    print("연도 드롭다운 클릭 완료")
-
-    year_option = hc_homepage.find_element(By.XPATH, "//option[text()='2022']")
-    year_option.click()
-    print("2022년 선택 완료")
-
-    time.sleep(2)
-    month_dropdown = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[2]/div/div/select[2]")
-    month_dropdown.click()
-    print("월 드롭다운 클릭 완료")
-
-    time.sleep(2)
-    month_option5 = hc_homepage.find_element(
-        By.XPATH, "//option[text()='12월']")
-    month_option5.click()
-    print("12월 선택 완료")
-
-    time.sleep(2)
-    target_date = hc_homepage.find_element(
-        By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[7]/a")
-    target_date.click()
-    print("31일 선택 완료")
-
-    time.sleep(2)
     login_button = hc_homepage.find_element(
         By.XPATH, "/html/body/div[1]/div[2]/div[1]/form/div[1]/div[2]/button[1]")
     login_button.click()

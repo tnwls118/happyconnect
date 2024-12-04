@@ -11,7 +11,7 @@ start_time = time.time()
 
 # 변수 설정
 hc_id = "hc_csj1"
-hc_pw = "2024tid^^"
+hc_pw = "dudn1591!"
 homepage_Path = "https://happycommunity.happyconnect.co.kr/"
 driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
 
@@ -23,7 +23,7 @@ print("chrome 경로 설정")
 # 행복커뮤니티 홈페이지 조회
 hc_homepage.get(homepage_Path)
 hc_homepage.maximize_window()
-time.sleep(2)
+time.sleep(4)
 print("행커 사이트 조회 완료")
 
 # 로그인 정보 입력
@@ -42,17 +42,16 @@ login_button = hc_homepage.find_element(
 login_button.click()
 time.sleep(3)
 print("로그인 완료")
-popup = hc_homepage.find_element(
-    By.XPATH, "/html/body/div[42]/div[1]/div[2]/a/img")
-popup.click()
-time.sleep(2)
+time.sleep(3)
 # 생활감지센서 설정 페이지 진입
 setting_button = hc_homepage.find_element(
     By.XPATH, "/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/button")
 setting_button.click()
+time.sleep(2)
 tid_setting_button = hc_homepage.find_element(
-    By.XPATH, "/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/ul/li[8]/a")
+    By.XPATH, "/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/ul/li[9]/a")
 tid_setting_button.click()
+time.sleep(2)
 dropbox = hc_homepage.find_element(
     By.XPATH, "/html/body/div[23]/div[2]/form/div/div[1]/ul[2]/li/select")
 dropbox.click()
@@ -60,6 +59,7 @@ option = WebDriverWait(hc_homepage, 10).until(
     EC.element_to_be_clickable((By.XPATH, "//option[contains(text(), 'TID')]")))
 option.click()
 print("TID 옵션 선택 완료")
+time.sleep(2)
 
 # 엑셀 파일 경로 설정 및 엑셀 파일 읽기
 excel_file_path = r"C:\Users\82109\Desktop\통합 문서1.xlsx"

@@ -9,10 +9,10 @@ import time
 print("프로그램 시작")
 start_time = time.time()
 # 변수 설정
-hc_id = "hc_csj"
-hc_pw = "2024tid^^"
+hc_id = "hc_csj1"
+hc_pw = "dudn1591!"
 homepage_Path = "https://happycommunity.happyconnect.co.kr/"
-driver_path = r"C:\Users\82109\.vscode\work space\chromedriver.exe"
+driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
 
 # chrome driver 경로 설정
 service = Service(driver_path)
@@ -76,7 +76,7 @@ time.sleep(2)
 
 # 옵션 선택
 option = hc_homepage.find_element(
-    By.XPATH, "//option[contains(text(), '부산광역시')]")
+    By.XPATH, "//option[contains(text(), '충청남도')]")
 option.click()
 time.sleep(2)
 
@@ -88,7 +88,7 @@ time.sleep(2)
 
 # 옵션 선택
 option = hc_homepage.find_element(
-    By.XPATH, "//option[contains(text(), '북구')]")
+    By.XPATH, "//option[contains(text(), '부여군')]")
 option.click()
 time.sleep(2)
 
@@ -115,7 +115,7 @@ try:
         for n in range(1, 10):
             print(f"리스트 {n}번째 항목 작업 중")
             bogy_button = hc_homepage.find_element(
-                By.XPATH, f"/html/body/div[1]/div[2]/div/div[3]/form/div/table/tbody/tr[{n}]/td[14]/button")
+                By.XPATH, f"/html/body/div[1]/div[2]/div/div[3]/form/div/table/tbody/tr[{n}]/td[11]/button")
             bogy_button.click()
             time.sleep(3)
 

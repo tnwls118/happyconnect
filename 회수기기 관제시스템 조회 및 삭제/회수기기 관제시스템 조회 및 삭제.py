@@ -11,7 +11,7 @@ start_time = time.time()
 
 # 변수 설정
 hc_id = "hc_csj1"
-hc_pw = "2024tid^^"
+hc_pw = "dudn1591!"
 homepage_Path = "https://happycommunity.happyconnect.co.kr/"
 driver_path = r"C:\Users\82109\Desktop\시스템관련\work space\chromedriver.exe"
 
@@ -94,7 +94,7 @@ try:
 
         bogy_button = WebDriverWait(hc_homepage, 10).until(
             EC.element_to_be_clickable(
-                (By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/form/div/table/tbody/tr/td[14]/button"))
+                (By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/form/div/table/tbody/tr[1]/td[15]/button"))
         )
         bogy_button.click()
         time.sleep(3)

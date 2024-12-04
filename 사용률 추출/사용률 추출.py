@@ -93,9 +93,20 @@ option = WebDriverWait(driver, 10).until(
 option.click()
 print("경상남도 옵션 선택 완료")
 
+# # 옵션 선택
+# option = WebDriverWait(driver, 10).until(
+#     EC.element_to_be_clickable(
+#         (By.XPATH, "//option[contains(text(), '부산광역시')]"))
+# )
+# option.click()
+# print("부산광역시 옵션 선택 완료")
+
 # 반복할 지역 목록
-regions = ['사천시', '산청군',
-           '양산시', '의령군', '진주시', '창녕군', '거제시', '통영시', '하동군', '함안군', '함양군', '합천군']
+regions = ['거제시', '거창군', '고성군', '김해시', '남해군', '밀양시', '사천시', '산청군',
+           '양산시', '의령군', '진주시', '창녕군', '창원시', '통영시', '하동군', '함안군', '함양군', '합천군']
+
+# # 반복할 지역 목록
+# regions = ['중구', '부산진구', '사하구', '동구', '북구', '강서구']
 
 try:
     for index, region in enumerate(regions, start=1):
@@ -130,7 +141,7 @@ try:
         )
         month_dropdown.click()
 
-        # 9월 선택
+        # 11월 선택
         month_option = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable(
                 (By.XPATH, "/html/body/div[2]/div/div/select[2]"))
@@ -138,14 +149,14 @@ try:
         month_option.click()
 
         month_option2 = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//option[text()='10월']"))
+            EC.element_to_be_clickable((By.XPATH, "//option[text()='11월']"))
         )
         month_option2.click()
 
         # 특정 날짜 선택하기(1일)
         target_date = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable(
-                (By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[3]/a"))
+                (By.XPATH, "/html/body/div[2]/table/tbody/tr[1]/td[6]/a"))
         )
         target_date.click()
         print("시작 날짜 선택 완료")
@@ -164,16 +175,16 @@ try:
         )
         month_dropdown.click()
 
-        # 10월 선택
+        # 11월 선택
         month_option5 = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//option[text()='10월']"))
+            EC.element_to_be_clickable((By.XPATH, "//option[text()='11월']"))
         )
         month_option5.click()
 
-        # 특정 날짜 선택하기(31일)
+        # 특정 날짜 선택하기(30일)
         target_date = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable(
-                (By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[5]/a"))
+                (By.XPATH, "/html/body/div[2]/table/tbody/tr[5]/td[7]/a"))
         )
         target_date.click()
         print("종료 날짜 선택 완료")
@@ -216,7 +227,7 @@ try:
         )
         confirm_button.click()
 
-        time.sleep(100)
+        time.sleep(120)
 
         # 다운로드된 파일을 바탕화면으로 이동
         download_folder = "C:\\Users\\82109\\Desktop"
